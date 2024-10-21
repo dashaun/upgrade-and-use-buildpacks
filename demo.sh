@@ -30,7 +30,7 @@ init_sdkman() {
         echo "SDKMAN not found. Please install SDKMAN first."
         exit 1
     fi
-    sdk env
+    sdk env install
 }
 
 init() {
@@ -81,6 +81,7 @@ java_dash_jar_aot_enabled() {
 
 java_dash_jar_extract() {
     displayMessage "Extract the Spring Boot application for efficiency (java -Djarmode=tools)"
+    displayMessage "Buildpacks have been doing this, automatically, since the beginning"
     java -Djarmode=tools -jar ./target/$JAR_NAME extract --destination application
     displayMessage "Done"
 }
@@ -91,7 +92,7 @@ java_dash_jar_exploded() {
 }
 
 create_cds_archive() {
-  displayMessage "Create a CDS archive"
+  displayMessage "Create a Class Data Sharing (CDS) archive"
   java -XX:ArchiveClassesAtExit=application.jsa -Dspring.context.exit=onRefresh -jar application/$JAR_NAME | grep -v "[warning][cds]"
   displayMessage "Done"
 }
@@ -235,7 +236,7 @@ main() {
     source ./vendir/demo-magic/demo-magic.sh
     export TYPE_SPEED=100
     export DEMO_PROMPT="${GREEN}➜ ${CYAN}\W ${COLOR_RESET}"
-    export PROMPT_TIMEOUT=17
+    export PROMPT_TIMEOUT=5
 
     init_sdkman
     init
