@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 TEMP_DIR="upgrade-example"
-JAVA_8="8.0.422-librca"
+JAVA_8="8.0.432-librca"
 JAVA_23="24.1.r23-nik"
 JAR_NAME="hello-spring-0.0.1-SNAPSHOT.jar"
 
